@@ -48,8 +48,6 @@ void Character::equip(AMateria *m)
         i++;
     if (i < 4)
         this->inventory[i] = m;
-    else
-        delete m;
 }
 
 void Character::unequip(int idx)
@@ -63,15 +61,9 @@ void Character::unequip(int idx)
 void Character::use(int idx, ICharacter& target)
 {
     if (idx < 0 || idx > 3)
-    {
-        std::cout << "Index out of range" << std::endl;
         return ;
-    }
     if (!this->inventory[idx])
-    {
-        std::cout << "Nothing found the use" << std::endl;
         return ; 
-    }
     inventory[idx]->use(target);
 }
 

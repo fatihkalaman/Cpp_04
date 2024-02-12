@@ -23,7 +23,7 @@ std::string const &Ice::getType() const
 }
 
 Ice *Ice::clone() const {
-    Ice *tmp = new Ice;
+    Ice *tmp = new Ice(*this);
     return tmp;
 }
 

@@ -23,7 +23,7 @@ std::string const &Cure::getType() const
 }
 
 Cure *Cure::clone() const {
-    Cure *tmp = new Cure;
+    Cure *tmp = new Cure(*this);
     return tmp;
 }
 

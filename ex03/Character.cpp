@@ -1,28 +1,34 @@
 #include "Character.hpp"
 
-
 Character::Character(std::string name)
 {
     this->name = name;
+    int i = 0;
+    for (i = 0; i < 4; i++)
+        this->inventory[i] = 0;
 }
 
 Character::Character (const Character& copy)
 {
+    int i = 0;
+    for (i = 0; i < 4; i++)
+        this->inventory[i] = 0;
     *this = copy;
 }
 
 Character &Character::operator=(const Character& copy)
 {
-    if(this != &copy)
+    if (this != &copy)
 	{
 		name = copy.name;
-		for(int i = 0; i < 4; i++)
-		{
-			if(i < 4)
-				inventory[i] = copy.inventory[i]->clone();
-			else 
-				std::cout << "Not enough space";
-		}
+        int i;
+		for (i = 0; i < 4; i++)
+        {
+            if (this->inventory[i])
+                delete this->inventory[i];
+			if (copy.inventory[i])
+				this->inventory[i] = copy.inventory[i]->clone();
+        }
 	}
 	return(*this);
 }
@@ -36,42 +42,33 @@ void Character::equip(AMateria *m)
 {
     int i = 0;
     
-    if (!m) {
-        std::cout << "Materia is empty or invalid" << std::endl;
+    if (!m)
         return ;
-    }
-    while (this->inventory[i] != 0) {
+    while (i < 4 && this->inventory[i] != 0)
         i++;
-    }
-    if (i > 3) {
-        std::cout << "There is no enough space for Materia\n";
-        return ;
-    }
-    this->inventory[i] = m;
+    if (i < 4)
+        this->inventory[i] = m;
+    else
+        delete m;
 }
 
 void Character::unequip(int idx)
 {
     if (idx < 0 || idx > 3)
-    {
-        std::cout << "index out of range" << std::endl;
-        return ;
-    }
-    if (this->inventory[idx] == NULL)
-    {
-        std::cout << "There is no Materia to unequip!" << std::endl;
-        return ;
-    }
+        return;
+    delete this->inventory[idx];
     this->inventory[idx] = 0;
 }
 
 void Character::use(int idx, ICharacter& target)
 {
-    if (idx < 0 || idx > 3) {
+    if (idx < 0 || idx > 3)
+    {
         std::cout << "Index out of range" << std::endl;
         return ;
     }
-    if (!this->inventory[idx]) {
+    if (!this->inventory[idx])
+    {
         std::cout << "Nothing found the use" << std::endl;
         return ; 
     }
@@ -80,5 +77,10 @@ void Character::use(int idx, ICharacter& target)
 
 Character::~Character()
 {
-
+    int i = 0;
+    for (i = 0; i < 4; i++)
+    {
+        if (this->inventory[i])
+            delete this->inventory[i];
+    }
 }

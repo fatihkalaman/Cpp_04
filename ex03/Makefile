@@ -1,5 +1,5 @@
 CC = c++
-CFLAGS = -Wall -Wextra -Werror -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98 -g3
 RM = rm -rf
 NAME = main
 
@@ -9,6 +9,7 @@ OBJS = $(SRCS:.cpp=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
+	$(CC) $(CFLAGS) -c $(SRCS)
 	$(CC) $(CFLAGS) $(OBJS) -o $(NAME)
 
 .o: main.cpp

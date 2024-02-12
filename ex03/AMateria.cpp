@@ -1,9 +1,7 @@
 #include "AMateria.hpp"
 #include "ICharacter.hpp"
 
-AMateria::AMateria()
-{
-
+AMateria::AMateria() {
 }
 
 AMateria::AMateria(std::string const& type)
@@ -18,8 +16,7 @@ AMateria::AMateria(const AMateria& copy)
 
 AMateria &AMateria::operator=(const AMateria& copy)
 {
-    if(this != &copy)
-		type = copy.type;
+	type = copy.type;
 	return(*this);
 }
 

@@ -43,7 +43,7 @@ class Animal
         std::string type;
     public:
         Animal();
-        ~Animal();
+        virtual ~Animal();
         Animal(std::string type);
         Animal(const Animal& cpy);
         Animal &operator=(const Animal& obj);

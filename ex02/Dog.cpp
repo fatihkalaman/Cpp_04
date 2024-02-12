@@ -9,21 +9,21 @@ Dog::Dog(): AAnimal()
 
 Dog::~Dog()
 {
+    delete brain;
     std::cout << "** Dog ** Destructor called" << std::endl;
 }
 
 Dog::Dog(const Dog& cpy): AAnimal(cpy)
 {
     std::cout << "** Dog ** Copy constructor called" << std::endl;
+    this->brain = new Brain();
     *this = cpy;
 }
 
 Dog& Dog::operator=(const Dog& obj)
 {
-    std::cout << "** Dog ** Copy assignment operator called" << std::endl;
     AAnimal::type = obj.type;
-    if(!this->brain)
-    	this->brain = new Brain();
+    *this->brain = *obj.brain;
     return (*this);
 }
 

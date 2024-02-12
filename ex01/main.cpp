@@ -8,10 +8,9 @@ int main()
     const Animal* j = new Dog();
     const Animal* i = new Cat();
     Cat a;
-
     std::cout << BR_MAGENTA << (a.getBrain()->ideas[10] = "I want to eat meat") << DEF << std::endl;
 	std::cout << BR_MAGENTA << (a.getBrain()->ideas[9]) << DEF << std::endl;
-
+    Animal c(*i);
     Animal* Animal[4];
 
     Animal[0] = new Dog();

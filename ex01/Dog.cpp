@@ -16,7 +16,6 @@ Dog::~Dog()
 Dog::Dog(const Dog& cpy)
 {
     this->brain = new Brain();
-    std::cout << "** Dog ** Copy constructor called" << std::endl;
     *this = cpy;
 }
 
